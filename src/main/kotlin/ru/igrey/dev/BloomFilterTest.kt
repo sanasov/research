@@ -7,8 +7,6 @@ import java.util.stream.IntStream
 
 class BloomFilterTest {
     companion object {
-
-
         fun test() {
             val filter = BloomFilter.create(
                     Funnels.integerFunnel(),
@@ -28,7 +26,6 @@ class BloomFilterTest {
         }
 
     }
-
 }
 
 fun main() {
