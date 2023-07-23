@@ -14,6 +14,9 @@ plugins {
 
     kotlin("jvm") version kotlinVersion
     id("com.adarshr.test-logger") version loggerVersion
+
+    id("org.springframework.boot") version "3.1.2"
+    id("io.spring.dependency-management") version "1.1.2"
 }
 
 group = "ru.igrey.dev"
@@ -35,13 +38,22 @@ dependencies {
     implementation("io.github.microutils:kotlin-logging:$kotlinLoggingVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:$kotlinCoroutinesVersion")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 
     // guava
     implementation("com.google.guava:guava:$guavaVersion")
 
+    //spring
+    implementation("org.springframework.boot:spring-boot-starter-webflux")
 
+    // kafka
+    implementation("org.springframework.kafka:spring-kafka:3.0.9")
 
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$kotlinCoroutinesVersion")
+
+    // utils
+    implementation("org.apache.commons:commons-lang3:3.0")
 }
 
 sourceSets.getByName("main") {
@@ -64,7 +76,8 @@ tasks.withType<KotlinCompile> {
         freeCompilerArgs = listOf(
             "-Xjsr305=strict",
             "-Xuse-experimental=kotlinx.coroutines.ExperimentalCoroutinesApi",
-            "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi")
+            "-Xuse-experimental=kotlinx.coroutines.ObsoleteCoroutinesApi"
+        )
         jvmTarget = "17"
     }
 }
